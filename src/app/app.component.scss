@@ -1,0 +1,68 @@
+* {
+  font-family: Arial;
+}
+
+th {
+  text-align: left;
+  padding-bottom: 8px;
+}
+
+th:first-child {
+  padding-left: 20px;
+}
+
+td:first-child {
+  padding-left: 20px;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+.table-container {
+  display: flex;
+  justify-content: center;
+}
+
+.table-header {
+  border-bottom: 1px solid lightgrey;
+  padding-bottom: 8px;
+}
+
+.table-row {
+  height: 42px;
+  border-bottom: 1px solid lightgrey;
+}
+
+.table-row:hover {
+  background-color: lightgrey;
+}
+
+.bundesliga-table {
+  width: 80%;
+  margin-top: 16px;
+}
+
+.wappen {
+  height: 24px;
+  width: 24px;
+}
+
+.verein {
+  width: 30%;
+}
+
+.platz {
+  width: 24px;
+}
+
+.verein-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.fw-bold {
+  font-weight: bold;
+}
