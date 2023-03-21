@@ -16,37 +16,37 @@
     <tr *ngFor="let team of table" class="table-row">
       <td class="verein" headers="team">
         <div class="verein-container">
-          <span class="platz">{{team.platz}}.</span>
-          <img [src]="team.wappen" class="wappen" alt="Vereinswappen">
-          <span>{{team.team}}</span>
+          <span class="platz" data-cy="platz">{{team.platz}}.</span>
+          <img [src]="team.wappen" class="wappen" alt="Vereinswappen" data-cy="wappen">
+          <span data-cy="teamname">{{team.team}}</span>
         </div>
       </td>
       <td headers="spiele">
-        <span>{{team.spiele}}</span>
+        <span data-cy="spiele">{{team.spiele}}</span>
       </td>
       <td headers="siege">
-        <span>{{team.siege}}</span>
+        <span data-cy="siege">{{team.siege}}</span>
       </td>
       <td headers="unentschieden">
-        <span>{{team.unentschieden}}</span>
+        <span data-cy="unentschieden">{{team.unentschieden}}</span>
       </td>
       <td headers="niederlagen">
-        <span>{{team.niederlagen}}</span>
+        <span data-cy="niederlagen">{{team.niederlagen}}</span>
       </td>
       <td headers="tore">
-        <span>{{team.tore}}</span>
+        <span data-cy="tore">{{team.tore}}</span>
       </td>
       <td headers="gegentore">
-        <span>{{team.gegentore}}</span>
+        <span data-cy="gegentore">{{team.gegentore}}</span>
       </td>
       <td headers="tordifferenz">
-        <span>{{team.tordifferenz}}</span>
+        <span data-cy="tordifferenz">{{team.tordifferenz}}</span>
       </td>
       <td headers="punkte">
-        <span class="fw-bold">{{team.punkte}}</span>
+        <span class="fw-bold" data-cy="punkte">{{team.punkte}}</span>
       </td>
       <td headers="letzte5">
-        <span>{{team.letzte5}}</span>
+        <span data-cy="letzte5">{{team.letzte5}}</span>
       </td>
     </tr>
   </table>

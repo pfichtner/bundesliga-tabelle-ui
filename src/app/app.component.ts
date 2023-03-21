@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {BundesligaTableService} from "./services/bundesliga-table.service";
 import {Team} from "./models/team.model";
 
@@ -7,12 +7,10 @@ import {Team} from "./models/team.model";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent  {
 
-  table: Team[] = [];
+  @Input() table: Team[] = [];
   constructor(private tableService: BundesligaTableService) {
-  }
-  ngOnInit(): void {
     this.tableService.getTable().subscribe(result => {
       this.replaceLastFiveStringWithEmojis(result);
       this.table = result
