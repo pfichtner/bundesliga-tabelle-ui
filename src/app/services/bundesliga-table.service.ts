@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Observable, of} from "rxjs";
-import {Team} from "../models/team.model";
+import {TeamBackend} from "../models/team.backend.model";
+import {Team} from "../models/team.ui.model";
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,7 @@ import {Team} from "../models/team.model";
 export class BundesligaTableService {
   getTable(season?: number): Observable<Team[]> {
     return of( //TODO: replace Dummy Data
-      [
+      this.transformToUIModel([
         {
           "platz": 1,
           "wappen": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Borussia_Dortmund_logo.svg/560px-Borussia_Dortmund_logo.svg.png",
@@ -261,7 +262,50 @@ export class BundesligaTableService {
           "niederlagen": 13,
           "letzte5": "NUNNS"
         }
-      ]
+      ])
     );
+  }
+
+  transformToUIModel(teamBackend: TeamBackend[]): Team[] {
+    const table: Team[] = [];
+    teamBackend.forEach(t => table.push(this.transformBackendTeam(t)));
+    return table;
+  }
+
+  private transformBackendTeam(teamBackend: TeamBackend): Team {
+    const team: Team = {
+      platz: teamBackend.platz,
+      wappen: teamBackend.wappen,
+      team: teamBackend.team,
+      spiele: teamBackend.spiele,
+      punkte: teamBackend.punkte,
+      tore: teamBackend.tore,
+      gegentore: teamBackend.gegentore,
+      tordifferenz: teamBackend.tordifferenz,
+      siege: teamBackend.siege,
+      unentschieden: teamBackend.unentschieden,
+      niederlagen: teamBackend.niederlagen,
+      letzte5: []
+    }
+
+    teamBackend.letzte5.split('').forEach(char => {
+      switch (char) {
+        case 'S':
+          team.letzte5.push('../../assets/sieg.svg');
+          break;
+        case 'U':
+          team.letzte5.push('../../assets/unentschieden.svg');
+          break;
+        case 'N':
+          team.letzte5.push('../../assets/niederlage.svg');
+          break;
+        default:
+          // TODO: was passiert wenn kein S,U oder N zurück kommt?
+          team.letzte5.push('?');
+          break;
+      }
+    });
+
+    return team;
   }
 }

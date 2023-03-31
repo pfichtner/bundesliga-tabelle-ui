@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {BundesligaTableService} from "./services/bundesliga-table.service";
-import {Team} from "./models/team.model";
+import {Team} from "./models/team.ui.model";
 
 @Component({
   selector: 'app-root',
@@ -12,17 +12,7 @@ export class AppComponent  {
   @Input() table: Team[] = [];
   constructor(private tableService: BundesligaTableService) {
     this.tableService.getTable().subscribe(result => {
-      this.replaceLastFiveStringWithEmojis(result);
       this.table = result
-    });
-  }
-
-  private replaceLastFiveStringWithEmojis(result: Team[]) {
-    result.forEach(team => {
-      team.letzte5 = team.letzte5
-        .replaceAll('S', '✅')
-        .replaceAll('U', '0️⃣')
-        .replaceAll('N', '⛔️');
     });
   }
 }

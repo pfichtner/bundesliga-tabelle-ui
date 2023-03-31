@@ -46,7 +46,9 @@
         <span class="fw-bold" data-cy="punkte">{{team.punkte}}</span>
       </td>
       <td headers="letzte5">
-        <span data-cy="letzte5">{{team.letzte5}}</span>
+        <div class="letzte-5">
+          <img *ngFor="let icon of team.letzte5" [src]="icon"/>
+        </div>
       </td>
     </tr>
   </table>
