@@ -21,7 +21,13 @@ describe('AppComponent.cy.ts', () => {
             "siege": 17,
             "unentschieden": 2,
             "niederlagen": 6,
-            "letzte5": "SUSSS"
+            "letzte5": [
+              "../../assets/sieg.svg",
+              "../../assets/niederlage.svg",
+              "../../assets/niederlage.svg",
+              "../../assets/niederlage.svg",
+              "../../assets/niederlage.svg"
+            ]
           }
         ]
       }
