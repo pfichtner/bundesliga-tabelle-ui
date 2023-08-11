@@ -309,8 +309,6 @@ export class BundesligaTableService {
           team.letzte5.push('../../assets/niederlage.svg');
           break;
         default:
-          // TODO: was passiert wenn kein S,U oder N zurück kommt?
-          team.letzte5.push('?');
           break;
       }
     });
