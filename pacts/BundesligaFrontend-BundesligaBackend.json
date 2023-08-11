@@ -1,0 +1,55 @@
+{
+  "consumer": {
+    "name": "BundesligaFrontend"
+  },
+  "interactions": [
+    {
+      "description": "a request to get the bundesliga standings",
+      "providerState": "matchday #1 first team has one win, one draw and one loss",
+      "request": {
+        "headers": {
+          "Accept": "application/json"
+        },
+        "method": "GET",
+        "path": "/tabelle/bl1/2023"
+      },
+      "response": {
+        "body": [
+          {
+            "gegentore": 31,
+            "letzte5": "SUN",
+            "niederlagen": 6,
+            "platz": 1,
+            "punkte": 53,
+            "siege": 17,
+            "spiele": 25,
+            "team": "Borussia Dortmund",
+            "tordifferenz": 24,
+            "tore": 55,
+            "unentschieden": 2,
+            "wappen": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Borussia_Dortmund_logo.svg/560px-Borussia_Dortmund_logo.svg.png"
+          }
+        ],
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "status": 200
+      }
+    }
+  ],
+  "metadata": {
+    "pact-js": {
+      "version": "11.0.2"
+    },
+    "pactRust": {
+      "ffi": "0.4.0",
+      "models": "1.0.4"
+    },
+    "pactSpecification": {
+      "version": "2.0.0"
+    }
+  },
+  "provider": {
+    "name": "BundesligaBackend"
+  }
+}

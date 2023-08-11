@@ -1,12 +1,16 @@
 import {Injectable} from '@angular/core';
-import {Observable, of} from "rxjs";
+import {map, Observable, of} from "rxjs";
 import {TeamBackend} from "../models/team.backend.model";
 import {Team} from "../models/team.ui.model";
+import {HttpClient} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
 })
 export class BundesligaTableService {
+
+  constructor(private httpClient: HttpClient) {
+  }
   getTable(season?: number): Observable<Team[]> {
     return of( //TODO: replace Dummy Data
       this.transformToUIModel([
@@ -264,6 +268,11 @@ export class BundesligaTableService {
         }
       ])
     );
+  }
+
+  getTableFromServer(url: string): Observable<Team[]> {
+    return this.httpClient.get(url + '/tabelle/bl1/2023')
+      .pipe(map(table => this.transformToUIModel(table as TeamBackend[])));
   }
 
   transformToUIModel(teamBackend: TeamBackend[]): Team[] {
