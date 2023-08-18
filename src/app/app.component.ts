@@ -11,7 +11,7 @@ export class AppComponent  {
 
   @Input() table: Team[] = [];
   constructor(private tableService: BundesligaTableService) {
-    this.tableService.getTable().subscribe(result => {
+    this.tableService.getTableFromServer().subscribe(result => {
       this.table = result
     });
   }
