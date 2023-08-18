@@ -4,7 +4,7 @@ import {TestBed} from "@angular/core/testing";
 import {HttpClientTestingModule} from "@angular/common/http/testing";
 import {Team} from "../models/team.ui.model";
 import {HttpClientModule} from "@angular/common/http";
-import {like, term} from "@pact-foundation/pact/src/dsl/matchers";
+import {integer, like, string, term} from "@pact-foundation/pact/src/dsl/matchers";
 
 const provider = new Pact({
   dir: './pacts',
@@ -43,27 +43,66 @@ describe('BundesligaTabelleUIService', () => {
         headers: {'Content-Type': 'application/json'},
         body: [
           {
-            "platz": 1,
-            "wappen": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Borussia_Dortmund_logo.svg/560px-Borussia_Dortmund_logo.svg.png",
-            "team": "Borussia Dortmund",
+            "platz": integer(1),
+            "team": "anyTeamName",
             "spiele": 3,
             "punkte": 4,
-            "tore": 3,
-            "gegentore": 3,
-            "tordifferenz": 0,
+            "tore": integer(3),
+            "gegentore": integer(3),
+            "tordifferenz": integer(0),
             "siege": 1,
             "unentschieden": 1,
             "niederlagen": 1,
             "letzte5": term({
-              matcher: 'SUN.?',
-              generate: 'SUNxx'
+              generate: 'NUSxx',
+              matcher: 'NUS|NUS.{2}'
             })
           },
+          {
+            "platz": integer(),
+            "team": string(),
+            "spiele": integer(),
+            "punkte": integer(),
+            "tore": integer(),
+            "gegentore": integer(),
+            "tordifferenz": integer(),
+            "siege": integer(),
+            "unentschieden": integer(),
+            "niederlagen": integer(),
+            "letzte5": string()
+          },
+          {
+            "platz": integer(),
+            "team": string(),
+            "spiele": integer(),
+            "punkte": integer(),
+            "tore": integer(),
+            "gegentore": integer(),
+            "tordifferenz": integer(),
+            "siege": integer(),
+            "unentschieden": integer(),
+            "niederlagen": integer(),
+            "letzte5": string()
+          },
+          {
+            "platz": integer(),
+            "team": string(),
+            "spiele": integer(),
+            "punkte": integer(),
+            "tore": integer(),
+            "gegentore": integer(),
+            "tordifferenz": integer(),
+            "siege": integer(),
+            "unentschieden": integer(),
+            "niederlagen": integer(),
+            "letzte5": string()
+          },
+
         ]
       }));
     service.getTableFromServer(provider.mockService.baseUrl).subscribe(table => {
-      expect(table.length).toBe(1);
-      expect(table[0].letzte5).toEqual(['../../assets/sieg.svg', '../../assets/unentschieden.svg', '../../assets/niederlage.svg']);
+      expect(table.length).toBe(4);
+      expect(table[0].letzte5).toEqual(['../../assets/niederlage.svg', '../../assets/unentschieden.svg', '../../assets/sieg.svg']);
       done();
     });
   });
