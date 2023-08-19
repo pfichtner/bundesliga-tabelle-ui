@@ -271,7 +271,7 @@ export class BundesligaTableService {
   }
 
   getTableFromServer(url = ''): Observable<Team[]> {
-    return this.httpClient.get(url + '/tabelle/bl2/2023')
+    return this.httpClient.get(url + '/tabelle/bl1/2023')
       .pipe(map(table => this.transformToUIModel(table as TeamBackend[])));
   }
 
