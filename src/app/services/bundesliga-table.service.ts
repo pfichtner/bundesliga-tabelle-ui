@@ -297,7 +297,7 @@ export class BundesligaTableService {
       letzte5: []
     }
 
-    teamBackend.letzte5.split('').forEach(char => {
+    teamBackend.letzte5.padEnd(5, ' ').substring(0, 5).split('').forEach(char => {
       switch (char) {
         case 'S':
           team.letzte5.push('../../assets/sieg.svg');
@@ -309,6 +309,7 @@ export class BundesligaTableService {
           team.letzte5.push('../../assets/niederlage.svg');
           break;
         default:
+          team.letzte5.push('../../assets/nicht-gespielt.svg');
           break;
       }
     });
