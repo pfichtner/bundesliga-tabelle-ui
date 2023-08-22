@@ -100,7 +100,7 @@ describe('BundesligaTabelleUIService', () => {
 
         ]
       }));
-    service.getTableFromServer(provider.mockService.baseUrl).subscribe(table => {
+    service.getTableFromServer("bl1", "2023", provider.mockService.baseUrl).subscribe(table => {
       expect(table.length).toBe(4);
       expect(table[0].letzte5).toEqual(['../../assets/niederlage.svg', '../../assets/unentschieden.svg', '../../assets/sieg.svg']);
       done();

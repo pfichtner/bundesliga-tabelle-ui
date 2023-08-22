@@ -2,6 +2,22 @@
   font-family: Arial;
 }
 
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80%;
+  width: 100%;
+}
+
+.selection-container {
+  display: flex;
+  gap: 8px;
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-top: 16px;
+}
+
 th {
   text-align: left;
   padding-bottom: 8px;

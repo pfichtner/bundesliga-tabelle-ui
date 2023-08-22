@@ -1,5 +1,36 @@
-<h1>Bundesliga Tabelle 2022/2023</h1>
-<div class="table-container">
+<mat-toolbar color="primary">
+  <span>My Football App</span>
+</mat-toolbar>
+
+<div class="selection-container">
+  <mat-form-field appearance="fill">
+    <mat-select [(value)]="selectedLiga" (selectionChange)="updateTable()">
+      <mat-option value="bl1">1. Bundesliga</mat-option>
+      <mat-option value="bl2">2. Bundesliga</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-select [(value)]="selectedSeason" (selectionChange)="updateTable()">
+      <mat-option value="2023">Saison 23/24</mat-option>
+      <mat-option value="2022">Saison 22/23</mat-option>
+      <mat-option value="2021">Saison 21/22</mat-option>
+      <mat-option value="2020">Saison 20/21</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<ng-container *ngIf="loading">
+  <div class="loading">
+    <mat-progress-spinner
+      color="primary"
+      data-automation-id="indicator-spinner"
+      diameter="60"
+      mode="indeterminate"
+      strokeWidth="4"
+    >
+    </mat-progress-spinner>
+  </div>
+</ng-container>
+<div class="table-container" *ngIf="!loading">
   <table class="bundesliga-table">
     <tr class="table-header">
       <th id="team" scope="col">Verein</th>

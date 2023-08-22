@@ -10,9 +10,18 @@ import {Team} from "./models/team.ui.model";
 export class AppComponent  {
 
   @Input() table: Team[] = [];
+  selectedLiga = 'bl1';
+  selectedSeason = '2023'
+  loading = false;
   constructor(private tableService: BundesligaTableService) {
-    this.tableService.getTableFromServer().subscribe(result => {
+    this.updateTable();
+  }
+
+  updateTable() {
+    this.loading = true;
+    this.tableService.getTableFromServer(this.selectedLiga, this.selectedSeason).subscribe(result => {
       this.table = result
+      this.loading = false;
     });
   }
 }
